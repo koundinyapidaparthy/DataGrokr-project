@@ -8,7 +8,7 @@ Node js must be Installed in your laptop or pc.
 
 If you haven't Installed Node js
 
-Download here-[https://nodejs.org/en/download/](https://)
+Download here- https://nodejs.org/en/download/
 
 ### Next
 
@@ -26,7 +26,7 @@ Open the folder in any editor (eg: VsCode,Sublime,Atom etc..) Which you are conv
 1. cd server (go to server folder)****
 2. npm i express
 3. node app.js (to start backend server)
-4. Click-This -> [http://localhost:5000](https://)
+4. Click-This -> http://localhost:5000
 5. ❤️ Done you get Hello from Express!
 
 # This Project has two main files Client and Server
