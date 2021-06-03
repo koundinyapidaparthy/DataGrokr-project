@@ -2,26 +2,32 @@
 
 Download Entire Code And Extract the Zip Folder
 
-Open the folder in any editor (eg: VsCode,Sublime,Atom etc..) Which you areconvenient in.
+## Prerequisites
 
-Open two Terminals on that folder
+Node js must be Installed in your laptop or pc.
 
-1. Do on 1st terminal - cd client
-1. On 2nd terminal - cd server
+If you haven't Installed Node js
+
+Download here-[https://nodejs.org/en/download/](https://)
+
+### Next
+
+Open the folder in any editor (eg: VsCode,Sublime,Atom etc..) Which you are convenient in.
 
 **On 1st terminal Do this task:**
 
 1. cd client (go to client folder)
 2. npm i react-scripts
 3. npm start (to start front end server)
+4. ❤️ Done you get **USER CONTACT INFORMATION**
 
 **On 2nd terminal Do this task:**
 
-1. cd server (go to server folder)
+1. cd server (go to server folder)****
 2. npm i express
 3. node app.js (to start backend server)
-
-## Prerequisite
+4. Click-This -> [http://localhost:5000](https://)
+5. ❤️ Done you get Hello from Express!
 
 # This Project has two main files Client and Server
 
