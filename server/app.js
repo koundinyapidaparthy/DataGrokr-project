@@ -9,9 +9,8 @@ app.use(express.json());
 // datagrokrprojectbykoundinya
 const port =process.env.PORT || 5000;
 
-app.get("/",(req,res)=>{
-    res.send("hello");
-})
+
+app.get('/', (req, res) => { res.send('Hello from Express!')});
 
 app.post("/DataBase",async (req,res)=>{
     const { Firstname,Lastname,Email,ZipCode,Age,PhoneNumber,StorageMedium} = req.body;
