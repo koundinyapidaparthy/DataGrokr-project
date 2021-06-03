@@ -41,7 +41,7 @@ Here Also User details are Validate same as Client
 When user clicked on **Submit** button front-end validate
 
 * None of the input box is empty
-* PhoneNumber validate according to Indians number Start with 6-9 and must contains 10 digits
+* PhoneNumber validate according to Indians num****ber Start with 6-9 and must contains 10 digits
 * Email also validate according to regex value given
 * ZipCode validate according to Indian zipcodes Start with 1-6 and must contains 6 digits
 
