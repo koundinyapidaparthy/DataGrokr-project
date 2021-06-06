@@ -1,7 +1,9 @@
 import React,{useState} from 'react';
 import { useHistory } from "react-router-dom";
 import styled from "styled-components";
-import Protect from "../images/Protected.svg";
+import ProtectImage from "../images/Protected.svg";
+import DatabaseImage from "../images/Database.png";
+import FileImage from "../images/File.png";
 const ContactsFile = () => {
     // ? history hook
 
@@ -165,7 +167,8 @@ const ContactsFile = () => {
             }
 
            
-    }
+    }  
+
 
     const stateChange=()=>{
         setstate("");
@@ -178,7 +181,7 @@ const ContactsFile = () => {
     return (
         <Main>
             <IMAGE>
-                <img src={Protect} alt="Protection" />
+                <img src={ProtectImage} alt="Protection" />
             </IMAGE>
             <h2>User contact information</h2>
             <CONTENT>
@@ -223,15 +226,22 @@ const ContactsFile = () => {
                                  <b>
                                     i
                                     <div className="Hovering">
-                                                lkasdlkjasdlj
+                                        <div className="innerHover">
+                                          <img src={FileImage} alt="DataBase.png" />
+                                          <span> {"->>"} Store The Data In Your LocalFile</span>
+                                        </div>
+                                        <div className="innerHover">
+                                          <img src={DatabaseImage} alt="DataBase.png" />
+                                          <span> {"->>"} Store The Data In our Database</span>
+                                        </div>
                                     </div>
                                  </b>
                                  
                                 </span>
                             <select id="StorageMedium">
                             <option value="none"  hidden> Select an Option</option>
-                                <option value="DataBase">DataBase</option>
                                 <option value="LocalFile">LocalFile</option>
+                                <option value="DataBase">DataBase</option>
                             </select>
                         </label>
                         <label><button onClick={DataFetch}>Submit</button></label>
@@ -413,6 +423,7 @@ const AccountDetails=styled.div`
                             background-color: white;
                             text-align:start;
                             padding:10px;
+
                             &:before{
                                 position:absolute;
                                 content:"";
@@ -424,6 +435,22 @@ const AccountDetails=styled.div`
                                 transform: rotate(45deg);
                                 border-left: 1px solid black;
                                 border-bottom: 1px solid black;
+                            }
+                            
+                            .innerHover{
+                                margin-top:10px;
+                                ${Reused.flex("row","center","center")};
+                                    img{
+                                    width:25px;
+                                    height:25px;
+                                    }
+                                    span{
+                                        margin-top: -1px;
+                                        margin-left:5px;
+                                        text-transform:capitalize;
+                                        font-weight:100 !important;
+                                    }
+
                             }
                             visibility: hidden;
                         }
