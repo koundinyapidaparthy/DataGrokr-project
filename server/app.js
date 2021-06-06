@@ -16,7 +16,7 @@ app.post("/DataBase",async (req,res)=>{
     const { Firstname,Lastname,Email,ZipCode,Age,PhoneNumber,StorageMedium} = req.body;
     console.log( Firstname,Lastname,Email,ZipCode,Age,PhoneNumber,StorageMedium);
     const regxP = /^[6-9]\d{9}$/ ;
-    const regxZ = /^([1-9]{6})$/;
+    const regxZ =  /^([0-9]{6})$/;
     const regxE =/^[a-zA-Z0-9]+@[a-zA-Z0-9]+\.[A-Za-z]+$/;
     const PN=PhoneNumber.toString();
     const ZC=ZipCode.toString();
@@ -66,7 +66,7 @@ app.post("/LocalFile",async (req,res)=>{
     const { Firstname,Lastname,Email,ZipCode,Age,PhoneNumber,StorageMedium} = req.body;
     console.log( Firstname,Lastname,Email,ZipCode,Age,PhoneNumber,StorageMedium);
     const regxP = /^[6-9]\d{9}$/ ;
-    const regxZ = /^([1-9]{6})$/;
+    const regxZ =  /^([0-9]{6})$/;
     const regxE =/^[a-zA-Z0-9]+@[a-zA-Z0-9]+\.[A-Za-z]+$/;
     const PN=PhoneNumber.toString();
     const ZC=ZipCode.toString();
@@ -101,6 +101,27 @@ app.post("/LocalFile",async (req,res)=>{
             const jsonobj=JSON.stringify(object);
             fs.appendFile("contact.json",jsonobj,(err)=>{console.log("data added")});
             return res.status(201).json({ message: "user registered successfuly",status:201 });
+        }
+    }
+    catch(e){
+        console.log(e);
+    }
+})
+app.post("/Check",async (req,res)=>{
+    const {Email} = req.body;
+    console.log(Email)
+    try{
+        if(!Email){
+            return res.status(422).json({ error: "Provide All Details",status:422 });
+        }
+        else{
+            const userExist = await contactModel.findOne({ Email: Email });
+            if (userExist) {
+                return res.status(201).json({ message: "Registration successful",status:201 });
+            }
+            else{
+                return res.status(422).json({ error: "No Record Found",status:422 });
+            }
         }
     }
     catch(e){

@@ -1,7 +1,14 @@
-import React from 'react'
+import React,{useState} from 'react';
+import { useHistory } from "react-router-dom";
 import styled from "styled-components";
 import Protect from "../images/Protected.svg";
 const ContactsFile = () => {
+    // ? history hook
+
+    const history=useHistory();
+    //  ? state hook
+    const [state, setstate] = useState("");
+
 
         // * To BackEnd Server
 
@@ -25,12 +32,17 @@ const ContactsFile = () => {
                     })
                 });
                     const data = await res.json();
-                if (data.status === 422 || !data) {
-                    window.alert(data.error);
-                    console.log(data.error);
-                } else if(data.status===201){
-                    window.alert(data.message);
-                    }
+                    if (data.status === 422 || !data) {
+                        window.alert(data.error);
+                        console.log(data.error);
+                        if(data.error==="Email already Exist"){
+                            setstate("DataBase");
+                        }
+                    } 
+                    else if(data.status===201){
+                        window.alert(data.message);
+                        setstate("DataBase");
+                        }
             }
             
         }
@@ -59,9 +71,11 @@ const ContactsFile = () => {
                 if (data.status === 422 || !data) {
                     window.alert(data.error);
                     console.log(data.error);
-                } else if(data.status===201){
+                } 
+                else if(data.status===201){
                     window.alert(data.message);
-                    }
+                    setstate("LocalFile");
+                }
             }
         }
 
@@ -83,7 +97,7 @@ const ContactsFile = () => {
         const ZC=document.querySelector('#ZipCode').value.trim();
         const SM=document.querySelector('#StorageMedium').value.trim();
         const regxP = /^[6-9]\d{9}$/ ;
-        const regxZ = /^([1-9]{6})$/;
+        const regxZ = /^([0-9]{6})$/;
         const regxE =/^[a-zA-Z0-9]+@[a-zA-Z0-9]+\.[A-Za-z]+$/;
 
         // *  Used for front end validation
@@ -153,6 +167,14 @@ const ContactsFile = () => {
            
     }
 
+    const stateChange=()=>{
+        setstate("");
+    }
+
+    const confirmFun=()=>{
+        history.push("/confirmation");
+    }
+
     return (
         <Main>
             <IMAGE>
@@ -215,7 +237,37 @@ const ContactsFile = () => {
                         <label><button onClick={DataFetch}>Submit</button></label>
                     </div>
                 </AccountDetails>
+
             </CONTENT>
+            <POPUP>
+                    {
+                        !state ? <></> : 
+                        <>
+                            <div className="Cover">
+                            { state==="DataBase" ? 
+                            <>
+                                <div className="dbpopup">
+                                <div className="Cross" onClick={stateChange}>❌</div>
+                                    <span>successfully resgistered on {state}</span>
+                                    <button onClick={confirmFun}>Click Me To Check Your Data </button>
+                                </div>
+                            </>:<></>
+                                
+                            }
+                            { state==="LocalFile" ? 
+                            <>
+                                <div className="dbpopup">
+                                <div className="Cross" onClick={stateChange}>❌</div>
+                                    <span>successfully resgistered on {state}</span>
+                                    <a href="http://localhost:5000/LocalFile">http://localhost:5000</a>
+                                </div>
+                            </>:<></>
+                                
+                            }
+                            </div>
+                        </>
+                    }
+                </POPUP>
         </Main>
     )
 }
@@ -429,6 +481,69 @@ const AccountDetails=styled.div`
         }
       }
 
+`;
+const POPUP=styled.div`
+    .Cover{
+        position: fixed;
+        top:0;
+        left:0;
+        width:100%;
+        height:100vh;
+        background: rgba(0,0,0, 0.5);
+    }
+    .dbpopup{
+           position: absolute;
+           top:50%;
+           left:50%;
+           transform: translate(-50%, -50%);
+           width:300px;
+           height:150px;
+           background-color: white;
+           border-radius:10px;
+           box-shadow:15px 15px 15px 3px rgba(0,0,0,0.6);
+           border:0px;
+           ${Reused.flex("column","space-evenly","center")};
+           span{
+               text-transform:capitalize;
+               font-size:15px;
+               justify-content:center;
+           }
+           button{
+                width:80%;
+                height:40px;
+                text-transform: uppercase;
+                font-weight:bold;
+                background-color: #6c63ff;
+                border:0px;
+                color:white;
+                cursor: pointer;
+           }
+           a{
+               transform: scale(1);
+                transition:all 1s linear;
+                &:hover {
+                    transform: scale(1.1);
+                    
+               }
+           }
+           .Cross{
+               position:absolute;
+               border-radius:50%;
+               padding:3px;
+               border: 1px solid black;
+               font-family: Arial, Helvetica, sans-serif;
+               font-size: 10px;
+               top:5px;
+               cursor:pointer;
+               animation: rotate 1s linear;
+               right:5px;
+               transform: rotate(0deg);
+               transition: all 1s linear;
+               &:hover{
+                   transform: rotate(90deg);
+               }
+           }
+    }
 `;
 
 

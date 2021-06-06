@@ -1,9 +1,19 @@
 import ContactsFile from "./ContactsFile/ContactsFile";
+import ConfirmFile from "./ContactsFile/ConfirmFile";
+import {BrowserRouter as Router,Route,Switch,} from  "react-router-dom";
+
 function App() {
   return (
-    <div className="App">
+    <Router>
+      <Switch>
+        <Route exact path="/">
         <ContactsFile />
-    </div>
+        </Route>
+        <Route path="/confirmation">
+          <ConfirmFile />
+        </Route>
+      </Switch>
+    </Router>
   );
 }
 
