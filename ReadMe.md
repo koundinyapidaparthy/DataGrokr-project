@@ -46,6 +46,8 @@ And Email, PhoneNumber, ZipCode Validations happen
 
 **Styled-components** - To write CSS in JSX.
 
+**react-router-dom** - To Navigate between pages with out refresh
+
 ## ❤️ Server
 
 This is a Backend and Database part. Used **Node.js, Express.js, Mongoose** To Build this
